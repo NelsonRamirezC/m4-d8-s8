@@ -28,7 +28,7 @@ def leer_animales():
             al = fila[0].split(";")
             # order de parámetros (nombre, raza, especie, id)
             animal = Animal(al[1], al[2], al[3], al[0])
-            print(f"Indice: {index} -> {animal}")
+            print(f"Indice: {index+1} -> {animal}")
 
             
         print("****************FIN DATOS****************\n\n")
@@ -45,7 +45,9 @@ def registrar_animal():
     
     with open("./archivos/animales.csv", "a", newline="\n") as archivo_animales:
         writer = csv.writer(archivo_animales, delimiter=";")
-        lista_valores = [nuevo_animal.id, nuevo_animal.nombre, nuevo_animal.raza, nuevo_animal.especie]
+        
+    
+        lista_valores = list(nuevo_animal.__dict__.values())
         writer.writerow(lista_valores)
         print(f"Anima {nuevo_animal.nombre} registrado con éxito.")
     
